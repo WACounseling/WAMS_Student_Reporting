@@ -113,9 +113,17 @@ h2.sec{font-family:var(--serif);font-weight:600;font-size:1.45rem;line-height:1.
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:999px;font:inherit;font-weight:700;font-size:1rem;text-decoration:none;border:2px solid var(--brand);background:var(--brand);color:var(--on-brand);cursor:pointer}
 .btn.red{background:var(--red);border-color:var(--red);color:var(--on-red)}
 .btn.ghost{background:transparent;color:var(--link);border-color:var(--link)}
-.btn.big{width:100%;min-height:64px;font-size:1.1rem;line-height:1.2;justify-content:flex-start;text-align:left;gap:14px;padding:8px 18px 8px 8px;background:var(--red);border-color:var(--red);color:var(--on-red)}
+.btn.big{width:100%;min-height:64px;font-size:1.1rem;line-height:1.2;justify-content:space-between;text-align:center;gap:12px;padding:8px;background:var(--red);border-color:var(--red);color:var(--on-red)}
+.btn.big span{flex:1;text-align:center}
+.btn.big::after{content:"";width:48px;flex:none}
 .help-ico{width:48px;height:48px;flex:none;display:block}
+.signin{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;padding:11px 14px;background:var(--red-tint);border-left:4px solid var(--red);border-radius:0 10px 10px 0;font-size:.97rem;line-height:1.4;font-weight:600;color:var(--ink)}
+.signin .ico{margin-top:2px;color:var(--red);width:1.15em;height:1.15em}
+.report-tile .signin-line{display:block;margin-top:8px;font-weight:700;font-size:.93rem}
 .notice .row .btn.big{flex:1 1 100%}
+.report-cta{display:flex;justify-content:center;margin:26px 0 6px}
+.btn.xl{min-height:68px;padding:14px 32px;font-size:1.28rem;text-align:center;max-width:100%;gap:12px}
+.btn.xl .ico{width:1.5em;height:1.5em}
 .btn.sm{min-height:40px;padding:6px 14px;font-size:.95rem}
 .btn:hover{filter:brightness(1.06)}
 
@@ -479,7 +487,8 @@ var ICONS = {
   people:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
   buoy:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.9 4.9 4.3 4.3"/><path d="m14.8 14.8 4.3 4.3"/><path d="m14.8 9.2 4.3-4.3"/><path d="m4.9 19.1 4.3-4.3"/>',
   alert:'<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
-  check:'<path d="M20 6 9 17l-5-5"/>'
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
 };
 function ico(n, cls){
   return '<svg class="ico'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+ICONS[n]+'</svg>';
@@ -506,11 +515,14 @@ function lineCard(l){
 function footer(){
   return '<footer class="foot"><b>'+esc(APP_TITLE)+'</b>This app doesn’t ask for or save any information about you. A report is only sent when you submit the school’s report form. Reports are not anonymous, and the adults who handle them keep things as private as possible while still keeping everyone safe.</footer>';
 }
+function signinNote(){
+  return '<p class="signin">'+ico('lock')+'<span>Students must be logged into their Woodward Gmail account to submit a report.</span></p>';
+}
 function nextStep(){
   return '<section class="next" aria-labelledby="nx"><h2 id="nx">Ready to tell someone?</h2>'+
     '<p>You can share as much or as little as you’re comfortable with.</p>'+
     '<div class="row">'+reportBtn('Submit a report')+
-    '<a class="btn ghost" href="#/people">'+ico('people')+esc(REFER)+'</a></div></section>';
+    '<a class="btn ghost" href="#/people">'+ico('people')+esc(REFER)+'</a></div>'+signinNote()+'</section>';
 }
 
 /* ==================================================================
@@ -568,7 +580,7 @@ function viewHome(){
     '</div></section>'+
     '<div class="wrap">'+
       '<a class="report-tile" href="'+FORM_URL+'" target="_blank" rel="noopener noreferrer">'+ico('report')+
-        '<strong>Submit a report</strong><small>Open the Confidential Student Reporting Form Here. Share as much or as little as you’re comfortable with, but please note that the more information you share, the more quickly the issue can be appropriately addressed.</small></a>'+
+        '<strong>Submit a report</strong><small>Open the Confidential Student Reporting Form Here. Share as much or as little as you’re comfortable with, but please note that the more information you share, the more quickly the issue can be appropriately addressed.<span class="signin-line">Students must be logged into their Woodward Gmail account to submit a report.</span></small></a>'+
       emergencyNotice(true)+
       '<h2 class="sec">What’s going on?</h2>'+
       '<ul class="topics">'+list+'</ul>'+
@@ -612,7 +624,7 @@ function viewReport(){
     '<div class="wrap">'+
       '<div class="page-head"><h1 id="pg">Submit a report</h1>'+
         '<p class="lead">Open the Confidential Student Reporting Form here. Share as much or as little as you’re comfortable with, but please note that the more information you share, the more quickly the issue can be appropriately addressed. If you’re in immediate danger, call 911 first.</p></div>'+
-      '<div style="margin:20px 0 6px">'+reportBtn('Submit a report')+'</div>'+
+      '<div class="report-cta">'+reportBtn('Click here to submit a report','red xl')+'</div>'+signinNote()+
       emergencyNotice(true)+
       /* ADDED: helpful details, drawn from the harassment and unfair-treatment pages */
       '<h2 class="sec">Helpful things to include</h2>'+
@@ -656,7 +668,7 @@ function viewPeople(){
         '<p class="lead">Any adult you trust is a good place to start. These people are here to help.</p></div>'+
       '<h2 class="sec">Administrators</h2><ul class="people">'+admins.map(personCard).join('')+'</ul>'+
       '<h2 class="sec">Counselors</h2><ul class="people">'+couns.map(personCard).join('')+'</ul>'+
-      '<div class="next"><h2>Rather write it down?</h2><p>You can also send a report through the school’s form.</p><div class="row">'+reportBtn('Submit a report')+'</div></div>'+
+      '<div class="next"><h2>Rather write it down?</h2><p>You can also send a report through the school’s form.</p><div class="row">'+reportBtn('Submit a report')+'</div>'+signinNote()+'</div>'+
       footer()+
     '</div>'
   };
