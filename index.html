@@ -104,6 +104,16 @@ main{display:block;padding-bottom:110px;outline:none}
 h2.sec{font-family:var(--serif);font-weight:600;font-size:1.45rem;line-height:1.2;margin:34px 0 12px}
 .lead{font-size:1.1rem}
 
+.upstander{display:flex;gap:14px;align-items:flex-start;background:var(--red-tint);border:1px solid var(--line);border-left:6px solid var(--red);border-radius:12px;padding:16px;margin-top:18px}
+.upstander>.ico{width:1.9rem;height:1.9rem;flex:none;color:var(--red);margin-top:2px}
+.upstander b{font-family:var(--serif);font-size:1.2rem;font-weight:600;display:block;line-height:1.2}
+.upstander p{margin:4px 0 8px}
+.upstander a{font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.upstander a .ico{width:1em;height:1em}
+.upstander.big{margin-top:26px;padding:20px 18px}
+.upstander.big>.ico{width:2.4rem;height:2.4rem}
+.upstander.big h2{font-family:var(--serif);font-weight:600;font-size:1.65rem;line-height:1.1;margin:0 0 6px}
+.upstander.big p{margin:0 0 14px}
 .notice{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--red);border-radius:12px;padding:16px;margin-top:18px}
 .notice .ico{color:var(--link);margin-top:2px}
 .notice p{margin:0 0 10px}
@@ -298,6 +308,7 @@ var REFER = "Talk to a counselor or administrator";
 var TOPICS = [
   {
     id:"bullying", title:"Bullying", icon:"users",
+    up:"Bullying often stops when peers speak up. When you stand with someone who is being picked on, you could change their whole day.",
     prompt:"Someone is picking on me or someone else, in person or online",
     intro:"You deserve to be treated with respect. You never have to face bullying alone.",
     self:[
@@ -314,8 +325,8 @@ var TOPICS = [
               {t:"StopBullying.gov",u:"https://www.stopbullying.gov/"}]}
     ],
     friend:[
-      {h:"Helping a friend who’s being bullied", key:true,
-       p:["If a friend is being bullied be an ally!"],
+      {h:"Be an upstander for a friend who’s being bullied", key:true,
+       p:["If a friend is being bullied, be an upstander. Your support can make all the difference."],
        bullets:["Stand up for them when you see bullying happen, there is safety in numbers","Reassure them that the way they are being treated is not okay","Listen to them and show them support and empathy","Encourage them to speak with an administrator, counselor, or trusted adult","Offer to go with them to report bullying","If the situation continues or gets worse or dangerous you may need to speak with an adult even without their permission"]},
       {h:"Learn more",
        links:[{t:"Being a Bystander",u:"https://www.ditchthelabel.org/witness-someone-being-bullied/"},
@@ -325,6 +336,7 @@ var TOPICS = [
   },
   {
     id:"harassment", title:"Harassment", icon:"ban",
+    up:"No one should face harassment alone. Telling someone it’s not okay, checking in on them, or getting an adult involved shows them you have their back.",
     prompt:"Unwanted comments, jokes, messages, or touching",
     intro:"Harassment is unwanted behavior that makes someone feel scared, humiliated, or unsafe.",
     self:[
@@ -338,8 +350,8 @@ var TOPICS = [
        p:["Tell the person to stop if you feel safe doing so, but you never have to. Keep any messages or screenshots. Tell a trusted adult or submit a report right away — harassment reports are taken seriously and looked into promptly."]}
     ],
     friend:[
-      {h:"If you see someone being harassed", 
-       p:["If you see a friend or classmate being harassed be an ally!"],
+      {h:"Be an upstander if you see someone being harassed", key:true,
+       p:["If you see a friend or classmate being harassed, be an upstander. Standing with them shows they are not alone."],
        bullets:["Encourage them to speak with a trusted adult","Offer to go with them to get help","Remind them that no one should treat them that way","If the situation continues or gets worse or dangerous you may need to speak with an adult even without their permission"]}
     ],
     all:[
@@ -349,6 +361,7 @@ var TOPICS = [
   },
   {
     id:"discrimination", title:"Discrimination and racism", icon:"globe",
+    up:"Everyone deserves to belong. When you speak up for a classmate who is treated differently because of who they are, you help build a school where everyone is respected.",
     prompt:"I’m being treated differently because of who I am",
     intro:"Discrimination is never okay.",
     self:[
@@ -358,7 +371,7 @@ var TOPICS = [
        links:[{t:"Coping With Racism",u:"https://caps.ucsc.edu/pdf/coping-with-racism.pdf"}]}
     ],
     friend:[
-      {h:"If a friend is being discriminated against", key:true,
+      {h:"Be an upstander for a friend who’s being discriminated against", key:true,
        p:["It is never okay for someone to be discriminated against. If you see a friend being discriminated step in and say something! If you don’t feel comfortable doing that, complete a report or reach out to a counselor, administrator or trusted adult as soon as possible."]},
       {h:"How to support racial justice",
        links:[{t:"How to Support Racial Justice",u:"https://www.globalcitizen.org/en/content/how-to-support-racial-justice-black-americans/"},
@@ -367,6 +380,7 @@ var TOPICS = [
   },
   {
     id:"unfair", title:"Unfair treatment", icon:"scale",
+    up:"If you see a classmate being treated unfairly, your support and your voice can help make it right.",
     prompt:"Grades, discipline, or opportunities that don’t seem fair",
     intro:"Concerns about fairness are always worth raising.",
     self:[
@@ -383,12 +397,13 @@ var TOPICS = [
     ],
     friend:[
       /* ADDED */
-      {h:"If you see a classmate treated unfairly",
+      {h:"Be an upstander for a classmate who’s treated unfairly", key:true,
        p:["Check in with them privately and listen. Encourage them to talk to a counselor or administrator, and offer to go with them. If you’re worried, you can also tell an adult yourself."]}
     ]
   },
   {
     id:"selfharm", title:"Self-harm", icon:"heart", crisis:true,
+    up:"If a friend is hurting, caring enough to bring in a trusted adult can help keep them safe. That isn’t betraying them. It’s being the friend they need.",
     prompt:"Me or a friend hurting themselves, or feeling overwhelmed",
     intro:"Support for you or a friend. You don’t have to handle this alone.",
     self:[
@@ -405,7 +420,7 @@ var TOPICS = [
       /* ADDED */
       {h:"If a friend is in danger right now", key:true,
        p:["Get an adult immediately or call 911. You can also call or text 988 for advice on how to help."]},
-      {h:"If a friend is struggling with self-harm", key:true,
+      {h:"Be there for a friend who’s struggling with self-harm", key:true,
        p:["If a friend is struggling with self-harm you need to get a trusted adult involved immediately.",
           "Offer to go with your friend to talk, but even if they refuse this should be reported for their safety.",
           "Remember, as much as you want to help your friend, some issues require more help than you can offer alone. When health and safety are involved get an adult involved!"]},
@@ -420,6 +435,7 @@ var TOPICS = [
   },
   {
     id:"vaping", title:"Vaping, alcohol, and substances", icon:"wind",
+    up:"Looking out for a friend’s health is real friendship. Getting an adult involved isn’t betraying them. It helps them stay safe.",
     prompt:"Vaping, alcohol, or other substances",
     intro:"Getting help matters more than getting in trouble.",
     self:[
@@ -437,14 +453,47 @@ var TOPICS = [
               {t:"Teen Substance Use Resources",u:"https://www.projectknow.com/teen/resources/"}]}
     ],
     friend:[
-      {h:"If a friend is struggling with vaping or alcohol use", key:true,
+      {h:"Look out for a friend who’s struggling with vaping or alcohol use", key:true,
        p:["It can be uncomfortable when a friend is doing something that they shouldn’t, but alcohol and vaping is a significant health risk, and the safety of your friend is much more important than maintaining their confidence or keeping their secrets.",
           "If you know or suspect that a friend is using vape or alcohol please speak with a trusted adult as soon as possible.",
           "Remember, as much as you want to help your friend, some issues require more help than you can offer alone. When health and safety are involved get an adult involved!"]}
     ]
   },
   {
+    id:"upstander", title:"Be an upstander", icon:"megaphone", hide:true,
+    prompt:"Stand up for someone who is being mistreated",
+    intro:"A school becomes a community when we look out for each other. Your voice matters.",
+    all:[
+      {h:"What is an upstander?", key:true,
+       p:["An upstander is someone who sees another person being mistreated and chooses to do something about it. A bystander watches. An upstander helps, in a way that is safe and fits the situation."],
+       compare:{
+        no:{t:"A bystander",items:["Sees it and stays quiet","Walks away or laughs along","Assumes someone else will help","Leaves the person feeling alone"]},
+        yes:{t:"An upstander",items:["Notices and cares","Supports the person who is being hurt","Gets help from a trusted adult when it’s needed","Helps the person feel seen and not alone"]}}},
+      {h:"Why your voice matters",
+       p:["Most mistreatment happens with other students watching. When even one person speaks up, steps in, or sits with someone who is alone, it can change what happens next. Research on bullying shows that when peers step in, it often stops quickly.",
+          "Even a small act can mean a lot to the person who was hurt. It tells them they matter and that they are not alone."]},
+      {h:"Ways to be an upstander", key:true,
+       bullets:["Step in if it feels safe. Say something like “Hey, that’s not okay.”","Don’t join in. Don’t laugh, share, like, or forward hurtful posts or videos.","Check in with the person afterward. Ask if they are okay and let them know you saw what happened.","Include them. Invite them to sit with you or join your group.","Redirect. Change the subject, or ask the person to walk away with you.","Bring friends along. There is safety in numbers.","Tell a trusted adult or submit a report."]},
+      {h:"What you can say",
+       p:["You don’t need perfect words. Any of these can help:"],
+       bullets:["“That’s not okay.”","“Leave them alone.”","“Come hang out with us.”","“Are you okay? I saw what happened. Do you want to talk to someone together?”"]},
+      {h:"Safety comes first",
+       p:["You never have to put yourself in danger or confront someone in order to be an upstander. If stepping in doesn’t feel safe, you can still help by supporting the person afterward and getting an adult involved.",
+          "Telling an adult is not weakness and it is not snitching. It is one of the strongest things an upstander can do."],
+       links:[{t:"Reporting vs. snitching",u:"#/topic/snitching",int:true}]},
+      {h:"Reporting is upstanding", key:true,
+       p:["You don’t have to be the one it’s happening to. If you see a classmate being bullied, harassed, discriminated against, or treated unfairly, you can tell a counselor or administrator or submit a report.",
+          "You will never get in trouble for reporting something out of genuine concern for someone’s safety."]},
+      {h:"Take care of yourself, too",
+       p:["It can be upsetting to see a friend or classmate get hurt. Talk to a counselor or trusted adult about how you are feeling. You don’t have to carry it alone."]},
+      {h:"Learn more",
+       links:[{t:"Being a Bystander",u:"https://www.ditchthelabel.org/witness-someone-being-bullied/"},
+              {t:"Bystander: What To Do If You Witness Bullying",u:"https://kidshelpphone.ca/get-info/bystander-what-do-if-you-witness-bullying/"}]}
+    ]
+  },
+  {
     id:"snitching", title:"Reporting vs. snitching", icon:"question", unsure:true,
+    up:"Speaking up to protect someone is exactly what upstanders do.",
     prompt:"Not sure if I should tell",
     intro:"Reporting protects people. Here’s how to tell the difference.",
     all:[
@@ -456,7 +505,8 @@ var TOPICS = [
        bullets:["Could someone get physically or emotionally hurt if I say nothing?","Is this something an adult needs to know to keep people safe?","Am I doing this to help someone, not to get someone “in trouble” for fun?"],
        after:["If you answered yes to the first two, it’s reporting — and it’s the right call."]},
       {h:"Reporting is not being disloyal",
-       p:["Real friends look out for each other. If a friend is being hurt, is hurting themselves, or is in danger, telling an adult is one of the most loyal things you can do — even if it feels uncomfortable in the moment."]},
+       p:["Real friends look out for each other. If a friend is being hurt, is hurting themselves, or is in danger, telling an adult is one of the most loyal things you can do, even if it feels uncomfortable in the moment. That is what it means to be an upstander."],
+       links:[{t:"How to be an upstander",u:"#/topic/upstander",int:true}]},
       {h:"You can report privately",
        p:["You do not have to announce that you reported something. Use this app or talk to a trusted adult one-on-one. Adults handling these reports are trained to keep things as private as possible while still keeping everyone safe."]},
       {h:"When in doubt, report it", key:true,
@@ -488,6 +538,7 @@ var ICONS = {
   buoy:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.9 4.9 4.3 4.3"/><path d="m14.8 14.8 4.3 4.3"/><path d="m14.8 9.2 4.3-4.3"/><path d="m4.9 19.1 4.3-4.3"/>',
   alert:'<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
   check:'<path d="M20 6 9 17l-5-5"/>',
+  megaphone:'<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
   lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
 };
 function ico(n, cls){
@@ -518,9 +569,17 @@ function footer(){
 function signinNote(){
   return '<p class="signin">'+ico('lock')+'<span>Students must be logged into their Woodward Gmail account to submit a report.</span></p>';
 }
+function upBanner(text){
+  return '<aside class="upstander">'+ico('megaphone')+'<div><b>Be an upstander</b><p>'+esc(text)+'</p><a href="#/topic/upstander">How to be an upstander '+ico('go')+'</a></div></aside>';
+}
+function upCallout(){
+  return '<section class="upstander big" aria-labelledby="upc">'+ico('megaphone')+'<div><h2 id="upc">Be an upstander.</h2>'+
+    '<p>Every one of us can make this school kinder and safer. When you step in, check on someone, or speak up for a peer who is being mistreated, you show them they are not alone. Your voice matters.</p>'+
+    '<a class="btn" href="#/topic/upstander">Learn how to be an upstander</a></div></section>';
+}
 function nextStep(){
   return '<section class="next" aria-labelledby="nx"><h2 id="nx">Ready to tell someone?</h2>'+
-    '<p>You can share as much or as little as you’re comfortable with.</p>'+
+    '<p>Speaking up, for yourself or for someone else, is brave. You can share as much or as little as you’re comfortable with.</p>'+
     '<div class="row">'+reportBtn('Submit a report')+
     '<a class="btn ghost" href="#/people">'+ico('people')+esc(REFER)+'</a></div>'+signinNote()+'</section>';
 }
@@ -543,6 +602,9 @@ function renderBlock(b){
   (b.after||[]).forEach(function(t){ h+='<p>'+esc(t)+'</p>'; });
   if(b.links){
     h+='<ul class="links">'+b.links.map(function(l){
+      if(l.int){
+        return '<li><a href="'+l.u+'"><span>'+esc(l.t)+'</span>'+ico('go')+'</a></li>';
+      }
       if(l.tel){
         return '<li><a href="'+l.u+'"><span>'+esc(l.t)+'</span>'+ico('phone')+'</a></li>';
       }
@@ -553,7 +615,7 @@ function renderBlock(b){
   return h+'</section>';
 }
 function renderPanel(t, aud){
-  var blocks=(t[aud]||[]).concat(t.all||[]);
+  var blocks=aud==='all'?(t.all||[]):(t[aud]||[]).concat(t.all||[]);
   return '<div class="'+(aud==='friend'?'friend':'self')+'">'+blocks.map(renderBlock).join('')+'</div>';
 }
 
@@ -566,7 +628,7 @@ function crisisBlock(compact){
 }
 
 function viewHome(){
-  var list=TOPICS.map(function(t){
+  var list=TOPICS.filter(function(t){return !t.hide;}).map(function(t){
     return '<li'+(t.unsure?' class="unsure"':'')+'><a href="#/topic/'+t.id+'"><span class="badge">'+ico(t.icon)+'</span>'+
       '<span class="txt"><b>'+esc(t.title)+'</b><span>'+esc(t.prompt)+'</span></span>'+ico('go','go')+'</a></li>';
   }).join('');
@@ -582,6 +644,7 @@ function viewHome(){
       '<a class="report-tile" href="'+FORM_URL+'" target="_blank" rel="noopener noreferrer">'+ico('report')+
         '<strong>Submit a report</strong><small>Open the Confidential Student Reporting Form Here. Share as much or as little as you’re comfortable with, but please note that the more information you share, the more quickly the issue can be appropriately addressed.<span class="signin-line">Students must be logged into their Woodward Gmail account to submit a report.</span></small></a>'+
       emergencyNotice(true)+
+      upCallout()+
       '<h2 class="sec">What’s going on?</h2>'+
       '<ul class="topics">'+list+'</ul>'+
       '<h2 class="sec">Want to talk to a person?</h2>'+
@@ -598,7 +661,7 @@ function viewTopic(id){
   var seg=hasBoth?
     '<div class="seg" role="group" aria-label="Who is this about?">'+
       '<button type="button" data-aud="self" aria-pressed="true">Happening to me</button>'+
-      '<button type="button" data-aud="friend" aria-pressed="false">Happening to a friend</button></div>':'';
+      '<button type="button" data-aud="friend" aria-pressed="false">Helping someone else</button></div>':'';
   var firstAud=t.self?'self':(t.friend?'friend':'all');
   return {
     title:t.title+' · Woodward Academy Middle School',
@@ -609,6 +672,7 @@ function viewTopic(id){
         '<div class="topic-icon" aria-hidden="true">'+ico(t.icon)+'</div>'+
         '<h1 id="pg">'+esc(t.title)+'</h1><p>'+esc(t.intro)+'</p></div>'+
       (t.crisis?crisisBlock():'')+
+      (t.up?upBanner(t.up):'')+
       seg+
       '<div id="panel" aria-live="polite">'+renderPanel(t, firstAud)+'</div>'+
       nextStep()+
@@ -632,6 +696,9 @@ function viewReport(){
         ['Who was involved','What was said or done','When and where it happened','Any messages or screenshots you kept'].map(function(x){return '<li>'+ico('check')+'<span>'+esc(x)+'</span></li>';}).join('')+
       '</ul>'+
       '<p style="color:var(--soft);margin-top:10px">Don’t have all of it? That’s okay. Share what you know.</p>'+
+      '<h2 class="sec">Speaking up for someone else</h2>'+
+      '<p>You don’t have to be the one it’s happening to. If you’ve seen a classmate being bullied, harassed, or treated unfairly, telling us helps. Reporting is one of the most powerful ways to be an upstander.</p>'+
+      '<a class="linkrow" href="#/topic/upstander" style="margin-top:12px">'+ico('megaphone')+'<div><b>Be an upstander</b><span>Ways to stand up for a peer</span></div>'+ico('go','go')+'</a>'+
       '<h2 class="sec">What happens next</h2>'+
       '<ol class="steps">'+
         '<li><b>You fill out the form</b>Share what you’re comfortable sharing.</li>'+
@@ -665,7 +732,7 @@ function viewPeople(){
     html:
     '<div class="wrap">'+
       '<div class="page-head"><h1 id="pg">People you can talk to</h1>'+
-        '<p class="lead">Any adult you trust is a good place to start. These people are here to help.</p></div>'+
+        '<p class="lead">Any adult you trust is a good place to start. These people are here to help, whether something is happening to you or you’re worried about someone else.</p></div>'+
       '<h2 class="sec">Administrators</h2><ul class="people">'+admins.map(personCard).join('')+'</ul>'+
       '<h2 class="sec">Counselors</h2><ul class="people">'+couns.map(personCard).join('')+'</ul>'+
       '<div class="next"><h2>Rather write it down?</h2><p>You can also send a report through the school’s form.</p><div class="row">'+reportBtn('Submit a report')+'</div>'+signinNote()+'</div>'+
